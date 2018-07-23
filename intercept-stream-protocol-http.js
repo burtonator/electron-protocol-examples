@@ -12,17 +12,10 @@ const {PassThrough} = require('stream')
  */
 function interceptStreamProtocol(request, callback) {
 
-    console.log("Here at least");
-
-    // callback({
-    //     mimeType: "text/html",
-    //     stream: createStream('<h1>This is a perfectly cromulent response.</h1>')
-    // });
-
     // The usage is similar to the other register{Any}Protocol, except that the
-    // callback should be called with either a Readable object or an object that has the data, statusCode, and headers properties.
 
-    //callback(createStream('HTTP 200 OK\r\n<body>This is a perfectly cromulent response.</>'));
+    // callback should be called with either a Readable object or an object that
+    // has the data, statusCode, and headers properties.
 
     callback({
         statusCode: 200,
@@ -42,9 +35,10 @@ function createStream (text) {
 }
 
 function createMainWindow() {
+
     let mainWindow = new BrowserWindow();
 
-    let url = "fake://example.com";
+    let url = "http://example.com";
     mainWindow.loadURL(url);
     return mainWindow;
 
@@ -52,7 +46,7 @@ function createMainWindow() {
 
 app.on('ready', async function() {
 
-    protocol.registerStreamProtocol('fake', interceptStreamProtocol, (error) => {
+    protocol.interceptStreamProtocol('http', interceptStreamProtocol, (error) => {
 
         if (error) {
             console.error('failed to register protocol handler for HTTP');
