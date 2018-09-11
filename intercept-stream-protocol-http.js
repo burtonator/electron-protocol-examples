@@ -17,13 +17,17 @@ function interceptStreamProtocol(request, callback) {
     // callback should be called with either a Readable object or an object that
     // has the data, statusCode, and headers properties.
 
-    callback({
-        statusCode: 200,
-        headers: {
-            'content-type': 'text/html'
-        },
-        data: createStream('HTTP 200 OK\r\n<h5>Response</h5>')
-    });
+    setTimeout(() => {
+
+        callback({
+            statusCode: 200,
+            headers: {
+                'content-type': 'text/html'
+            },
+            data: createStream('HTTP 200 OK\r\n<h5>Response</h5>')
+        });
+
+    }, 0);
 
 }
 
