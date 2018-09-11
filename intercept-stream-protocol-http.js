@@ -57,7 +57,7 @@ app.on('ready', async function() {
             return;
         }
 
-        console.log("we're registered now.")
+        console.log("we're registered now.");
 
         let mainWindow = createMainWindow();
 
